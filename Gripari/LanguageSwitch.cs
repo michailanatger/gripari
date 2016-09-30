@@ -12,31 +12,35 @@ namespace Hucksters.Gripari
         public static string lang;
         public static void questionLanguage()
         {
-            Console.WriteLine("Choose your language, write English or Russian,E or R");
-            string language = Console.ReadLine().ToString();
+            
+            string language="";
             string path = @"C:\Users\micha\Documents\Visual Studio 2015\Projects\gripari\LanguageConfiguration.ini";// изменить после того как будет написан инсталятор
             if (File.Exists(path))
             {
-                
-                string[] readBuffer = System.IO.File.ReadAllBytes(path).ToString().Split('=');
-                if (readBuffer[1]=="English")
-                {
-                    LanguageSwitch.lang = "Russian";
-                }else
-                if (readBuffer[1] == "Russian")
-                {
-                    LanguageSwitch.lang = "Russian";
-                }
+
+                byte[] readBuffer = System.IO.File.ReadAllBytes(path);//.ToString().Split('=');
+                string[] langFromFile= System.Text.Encoding.Default.GetString(readBuffer).Split('=');
+                if (langFromFile[1]=="English")
+                 {
+                     LanguageSwitch.lang = "English";
+                 }else
+                 if (langFromFile[1] == "Russian")
+                 {
+                     LanguageSwitch.lang = "Russian";
+                 }
 
 
                 return;
             }
             else
+            Console.WriteLine("Choose your language, write English or Russian,E or R");
+            language = Console.ReadLine().ToString();
             if (language == "English" || language == "En" || language == "en" || language == "E")
             {
                 FileStream fs = File.Create(path);
                 Byte[] info = new UTF8Encoding(true).GetBytes("Language=English");
                 // Add some information to the file.
+                Console.ReadLine();
                 fs.Write(info, 0, info.Length);
             }
 
@@ -45,9 +49,9 @@ namespace Hucksters.Gripari
                 FileStream fs = File.Create(path);
                 Byte[] info = new UTF8Encoding(true).GetBytes("Language=Russian");
                 // Add some information to the file.
+                Console.ReadLine();
                 fs.Write(info, 0, info.Length);
             }
-            Console.WriteLine(language);
         }
 
     }

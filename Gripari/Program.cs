@@ -14,7 +14,7 @@ namespace Hucksters.Gripari
         static void Main(string[] args)
         {
             LanguageSwitch.questionLanguage();
-            Console.ReadLine();
+            
             int number = 1;
             Console.WriteLine(number);
 
