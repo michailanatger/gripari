@@ -55,6 +55,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AutoUpgrade.cs" />
     <Compile Include="EventLog.cs" />
     <Compile Include="LanguageSwitch.cs" />
     <Compile Include="OneC.cs" />
