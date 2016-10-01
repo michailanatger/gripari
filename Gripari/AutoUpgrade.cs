@@ -16,7 +16,6 @@ namespace Hucksters.Gripari
         {
             string path = @"C:\Users\micha\Documents\Visual Studio 2015\Projects\gripari\Version.xml";
             CurrentVersion = retVer(path);
-            
         } 
 
         public void checkVersionUpdate()
@@ -29,13 +28,12 @@ namespace Hucksters.Gripari
                      // HttpWebResponse response = (HttpWebResponse)request.GetResponse();
                      XmlDocument _xmlDoc = new XmlDocument();
                      _xmlDoc.LoadXml("ne znayu hosta\\version.xml");
-                     //тут надо оптимизироватьс функцией
-                     XmlElement _version = (XmlElement)_xmlDoc.GetElementsByTagName("version")[0];double ServerVersion = Convert.ToDouble(_version);
+                     //тут надо оптимизировать с функцией
+                     XmlElement _version = (XmlElement)_xmlDoc.GetElementsByTagName("version")[0];double ServerVersion = XmlConvert.ToDouble(_version.InnerText);
                      if (ServerVersion > CurrentVersion)
                              needUpdate = true;
                          else
                              needUpdate = false;
-                     
                  }
                  catch
                  {
@@ -52,7 +50,7 @@ namespace Hucksters.Gripari
             FileStream _fs = new FileStream(path, FileMode.Open);
             _verXml.Load(_fs);
             XmlElement _version = (XmlElement)_verXml.GetElementsByTagName("version")[0];
-            _retVer = Convert.ToDouble(_version);
+            _retVer = XmlConvert.ToDouble(_version.InnerText);
             return _retVer;
         }
 
