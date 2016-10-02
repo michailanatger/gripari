@@ -14,7 +14,6 @@ namespace Hucksters.Gripari
         static void Main(string[] args)
         {
             LanguageSwitch.questionLanguage();
-            AutoUpgrade au = new AutoUpgrade();
             int number = 1;
             Console.WriteLine(number);
 

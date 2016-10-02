@@ -18,6 +18,8 @@ namespace Hucksters.Gripari
             CurrentVersion = retVer(path);
         } 
 
+
+
         public void checkVersionUpdate()
         {
             Thread checker = new Thread(new ThreadStart(delegate
@@ -41,6 +43,15 @@ namespace Hucksters.Gripari
                  }
              }));
             checker.Start();
+        }
+
+        //надо по
+        public void DownloadProgram()
+        {
+           /* WebClient client = new WebClient();
+            client.DownloadProgressChanged += new DownloadProgressChangedEventHandler(ProgressChanged);
+            client.DownloadFileCompleted += new AsyncCompletedEventHandler(Completed);
+            client.DownloadFileAsync(new Uri(@"что то там"), "launcher.update");*/
         }
 
         double retVer(string path)
