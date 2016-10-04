@@ -95,7 +95,7 @@ namespace ClickOnceUpdate.Updater
             OnCompleted();
         }
 
-        public void Restart()
+        public void Restart(AppDomain app)
         {
             //var shortcutFile = Path.Combine(Path.GetTempPath(), Guid.NewGuid() + ".appref-ms");
             //CreateClickOnceShortcut(tmpFile);
@@ -105,10 +105,13 @@ namespace ClickOnceUpdate.Updater
 
             ReleaseMutex();
             proc.Start();
-            
+            app.ProcessExit+= new EventHandler(Application_ApplicationExit);
             //app.Shutdown();
         }
-
+        void Application_ApplicationExit(object sender, EventArgs e)
+        {
+            //do cleanup of your class
+        }
         public static string GetShortcutPath()
         {
             return String.Format(@"{0}\{1}\{2}.appref-ms", Environment.GetFolderPath(Environment.SpecialFolder.Programs), GetPublisher(), GetDeploymentInfo().Name.Replace(".application", ""));

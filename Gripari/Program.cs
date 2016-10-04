@@ -21,18 +21,18 @@ namespace Hucksters.Gripari
             AutoUpgrade upgr = new AutoUpgrade();
             upgr.checkVersionUpdate();
 
-            if(upgr.needUpdate == true)
-            {
+            
                 SilentUpdater = new ClickOnceUpdate.Updater.SilentUpdater();
-                SilentUpdater.Restart();
+                SilentUpdater.Restart(AppDomain.CurrentDomain);
 
-            }
+            
             var input1c = new OneC();
             var outputWeb = new WebOut();
 
             input1c.GotEventLog += outputWeb.OnEventLog;
             
             input1c.run();
+
         }
     }
     
