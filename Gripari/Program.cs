@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Reflection;
 using Hucksters.Gripari.Input;
 using Hucksters.Gripari.Output;
 
@@ -17,9 +18,15 @@ namespace Hucksters.Gripari
             LanguageSwitch.questionLanguage();
             int number = 1;
             Console.WriteLine(number);
-            //SilentUpdater = new ClickOnceUpdate.Updater.SilentUpdater();
-            //SilentUpdater.Restart();
-            //SilentUpdater.ProgressChanged += SilentUpdaterOnProgressChanged;
+            AutoUpgrade upgr = new AutoUpgrade();
+            upgr.checkVersionUpdate();
+
+            if(upgr.needUpdate == true)
+            {
+                SilentUpdater = new ClickOnceUpdate.Updater.SilentUpdater();
+                SilentUpdater.Restart();
+
+            }
             var input1c = new OneC();
             var outputWeb = new WebOut();
 

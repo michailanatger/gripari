@@ -4,13 +4,14 @@ using System.Net;
 using System.Threading;
 using System.Diagnostics;
 using System.Xml;
+using System.Reflection;
 
 namespace Hucksters.Gripari
 {
     class AutoUpgrade
     {
         double CurrentVersion;
-        bool needUpdate;
+        public bool needUpdate;
 
         public AutoUpgrade()
         {
@@ -18,7 +19,7 @@ namespace Hucksters.Gripari
             CurrentVersion = retVer(path);
         } 
 
-
+      
 
         public void checkVersionUpdate()
         {
